@@ -8,8 +8,12 @@ import bodyParser from 'body-parser';
 import  {connectToMongoDB} from "../connection.js";
 import userRoutes from "./routes/user.routes.js";
 
-
-app.use(cors());
+app.use(cors({
+    origin: 'https://dhiravproject.onrender.com', // Change to your frontend URL
+    methods: 'GET,POST,PUT,DELETE',
+    allowedHeaders: 'Content-Type, Authorization'
+  }));
+// app.use(cors());
 app.use(express.json({ limit: "40kb" }));
 app.use(express.urlencoded({ limit: "40kb", extended: true }));
 app.use(bodyParser.json());
